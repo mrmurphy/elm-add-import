@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "test": "elm-test",
+    "test:watch": "elm-test --watch"
+  },
+  "dependencies": {
+    "elm": "^0.18.0",
+    "elm-test": "^0.18.2"
+  }
+}
