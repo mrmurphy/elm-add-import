@@ -9,3 +9,10 @@ Copyright © 2016 Murphy Randle
 
 Distributed under the MIT license.
 
+
+# TODO:
+
+- [ ] Tests for parsing
+- [ ] Sort imports alphabetically
+- [ ] Test sorting
+- [ ] Support proper importing of type constructors from within modules
