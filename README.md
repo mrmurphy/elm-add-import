@@ -12,7 +12,7 @@ Distributed under the MIT license.
 
 # TODO:
 
-- [ ] Tests for parsing
-- [ ] Sort imports alphabetically
-- [ ] Test sorting
+- [x] Tests for parsing
+- [x] Sort imports alphabetically
+- [x] Test sorting
 - [ ] Support proper importing of type constructors from within modules
