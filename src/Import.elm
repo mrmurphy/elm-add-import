@@ -18,7 +18,7 @@ toString import_ =
         "import "
             ++ import_.moduleName
             ++ (Maybe.withDefault "" <|
-                    Maybe.map (\alias_ -> " as" ++ alias_ ++ " ") import_.alias
+                    Maybe.map (\alias_ -> " as " ++ alias_) import_.alias
                )
             ++ (Maybe.withDefault "" <|
                     Maybe.map (\symbols -> " exposing (" ++ (String.join ", " symbols) ++ ")")

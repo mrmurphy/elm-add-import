@@ -74,6 +74,28 @@ more code
 """
 
 
+fixtureMerges2 : String
+fixtureMerges2 =
+    """
+module Foo exposing (..)
+
+import A
+
+more code
+"""
+
+
+expectedMerges2 : String
+expectedMerges2 =
+    """
+module Foo exposing (..)
+
+import A exposing (a)
+
+more code
+"""
+
+
 all : Test
 all =
     describe "Adding imports"
@@ -93,6 +115,11 @@ all =
                     Expect.equal
                         (AddImport.addImport "A" (Just "a") fixtureMerges |> Result.withDefault "failed")
                         expectedMerges
+            , test "Merges new imports when original import has no symbols" <|
+                \() ->
+                    Expect.equal
+                        (AddImport.addImport "A" (Just "a") fixtureMerges2 |> Result.withDefault "failed")
+                        expectedMerges2
             ]
         , Tests.Parsing.all
         ]

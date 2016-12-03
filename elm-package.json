@@ -1,5 +1,5 @@
 {
-    "version": "1.0.3",
+    "version": "1.0.4",
     "summary": "Add an import to an Elm file. That's it!",
     "repository": "https://github.com/splodingsocks/elm-add-import.git",
     "license": "MIT",

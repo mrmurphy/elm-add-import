@@ -39,11 +39,14 @@ addImport moduleName mabSymbol inputSrc =
                             Just imp ->
                                 { imp
                                     | symbols =
-                                        Maybe.map2
-                                            (\symbols symbol ->
-                                                List.append symbols symbol
+                                        Maybe.map
+                                            (\symbol ->
+                                                let
+                                                    existingSymbols =
+                                                        Maybe.withDefault [] imp.symbols
+                                                in
+                                                    List.append existingSymbols symbol
                                             )
-                                            imp.symbols
                                             newSymbol
                                 }
 
