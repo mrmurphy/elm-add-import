@@ -30,25 +30,26 @@ addImport moduleName mabSymbol inputSrc =
                     importsDict =
                         Dict.fromList importsByName
 
-                    newSymbol : List String
+                    newSymbol : Maybe (List String)
                     newSymbol =
-                        case mabSymbol of
-                            Nothing ->
-                                []
-
-                            Just s ->
-                                [ s ]
+                        Maybe.map (\s -> [ s ]) mabSymbol
 
                     newImport =
                         case Dict.get moduleName importsDict of
                             Just imp ->
                                 { imp
-                                    | symbols = Maybe.map (\symbols -> List.append symbols newSymbol) imp.symbols
+                                    | symbols =
+                                        Maybe.map2
+                                            (\symbols symbol ->
+                                                List.append symbols symbol
+                                            )
+                                            imp.symbols
+                                            newSymbol
                                 }
 
                             Nothing ->
                                 { moduleName = moduleName
-                                , symbols = Just newSymbol
+                                , symbols = newSymbol
                                 , alias = Nothing
                                 }
 

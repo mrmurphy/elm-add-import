@@ -17,11 +17,10 @@ toString import_ =
     in
         "import "
             ++ import_.moduleName
-            ++ " "
             ++ (Maybe.withDefault "" <|
-                    Maybe.map (\alias_ -> "as " ++ alias_ ++ " ") import_.alias
+                    Maybe.map (\alias_ -> " as" ++ alias_ ++ " ") import_.alias
                )
             ++ (Maybe.withDefault "" <|
-                    Maybe.map (\symbols -> "exposing (" ++ (String.join ", " symbols) ++ ")")
+                    Maybe.map (\symbols -> " exposing (" ++ (String.join ", " symbols) ++ ")")
                         sortedSymbols
                )
