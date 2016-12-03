@@ -94,5 +94,5 @@ all =
                         (AddImport.addImport "A" (Just "a") fixtureMerges |> Result.withDefault "failed")
                         expectedMerges
             ]
-          -- , Tests.Parsing.all
+        , Tests.Parsing.all
         ]

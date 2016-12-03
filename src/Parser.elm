@@ -60,7 +60,7 @@ imports =
 
 everythingBeforeImports : Parser e String
 everythingBeforeImports =
-    regex "[^]*(?=import)"
+    regex "[^]*?(?=import)"
 
 
 everythingElse : Parser e String

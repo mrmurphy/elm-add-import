@@ -14,7 +14,14 @@ module Foo exposing (..)
 
 import A as A exposing (a, b, c)
 
-more code
+""" ++ fixture1After
+
+
+fixture1After : String
+fixture1After =
+    """more code, and I'm going to use the word
+import here later in the file to test a
+regression with the regex.
 """
 
 
@@ -30,7 +37,7 @@ expected1 =
     in
         { before = "\nmodule Foo exposing (..)\n\n"
         , imports = imports
-        , after = "more code\n"
+        , after = fixture1After
         }
 
 
