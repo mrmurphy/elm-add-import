@@ -12,6 +12,8 @@ fixture1 =
     """
 module Foo exposing (..)
 
+import B
+import BB as BB
 import A as A exposing (a, b, c)
 
 """ ++ fixture1After
@@ -29,7 +31,15 @@ expected1 : Module
 expected1 =
     let
         imports =
-            [ { moduleName = "A"
+            [ { moduleName = "B"
+              , symbols = Nothing
+              , alias = Nothing
+              }
+            , { moduleName = "BB"
+              , symbols = Nothing
+              , alias = Just "BB"
+              }
+            , { moduleName = "A"
               , symbols = Just [ "a", "b", "c" ]
               , alias = Just "A"
               }

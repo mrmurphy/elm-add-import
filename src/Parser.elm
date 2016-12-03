@@ -2,7 +2,7 @@ module Parser exposing (..)
 
 import Module exposing (Module)
 import Import exposing (Import)
-import Combine exposing (Parser, (<*>), (*>), (<*), string, regex, maybe, between, sepBy, while)
+import Combine exposing (Parser, (<*>), (*>), (<*), string, regex, maybe, between, sepBy, while, or)
 import Regex
 
 
@@ -11,28 +11,36 @@ whitespace =
     while ((==) ' ')
 
 
+eol : Parser e String
+eol =
+    regex "(\n|$)"
+
+
 nonWhitespace : Parser e String
 nonWhitespace =
     while ((/=) ' ')
 
 
-notImport : Parser e String
-notImport =
-    regex "[^(import)]*"
+anythingFollowedByNewlineWhitespaceOrEOL : Parser e String
+anythingFollowedByNewlineWhitespaceOrEOL =
+    regex ".*?(?=\n|\\s|$)"
 
 
 moduleName : Parser e String
 moduleName =
-    notImport
-        *> string "import"
-        *> between whitespace whitespace nonWhitespace
+    string "import"
+        *> whitespace
+        *> anythingFollowedByNewlineWhitespaceOrEOL
+        <* regex "(\\s*|\n|$)"
 
 
 alias : Parser e (Maybe String)
 alias =
     maybe <|
         string "as"
-            *> between whitespace whitespace nonWhitespace
+            *> whitespace
+            *> anythingFollowedByNewlineWhitespaceOrEOL
+            <* regex "(\\s*|\n|$)"
 
 
 symbols : Parser e (Maybe (List String))
